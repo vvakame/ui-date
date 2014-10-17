@@ -88,7 +88,7 @@ angular.module('ui.date', [])
       var dateFormat = attrs.uiDateFormat || uiDateFormatConfig;
       if ( dateFormat ) {
         // Use the datepicker with the attribute value as the dateFormat string to convert to and from a string
-        modelCtrl.$formatters.push(function(value) {
+        modelCtrl.$formatters.unshift(function(value) {
           if (angular.isString(value) ) {
             return jQuery.datepicker.parseDate(dateFormat, value);
           }
@@ -102,7 +102,7 @@ angular.module('ui.date', [])
         });
       } else {
         // Default to ISO formatting
-        modelCtrl.$formatters.push(function(value) {
+        modelCtrl.$formatters.unshift(function(value) {
           if (angular.isString(value) ) {
             return new Date(value);
           }
